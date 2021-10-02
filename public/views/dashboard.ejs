@@ -1,0 +1,11 @@
+<h1><%= session.user.name%></h1>
+<button type="button"><a href="/user/create">Create Post</a></button>
+
+<% myProjects.forEach(item => { %>
+    <div>Project Name :- <%= item.name %></div>
+    
+    <form action="/user/edit" method="POST">
+        <button type="button"><a href="">Edit</a></button>
+    </form>
+<% }) %>
+
