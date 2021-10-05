@@ -1,11 +1,48 @@
 <h1><%= session.user.name%></h1>
-<button type="button"><a href="/user/create">Create Post</a></button>
+<button type="button" class="btn btn-secondary"><a href="/user/create">Create Post</a></button>
 
+<% if(myProjects.length === 0){%> 
+<div>You donot have any post please create</div>
+<% } %>
 <% myProjects.forEach(item => { %>
     <div>Project Name :- <%= item.name %></div>
-    
+    <div>Project Name :- <%= item.description %></div>
     <form action="/user/edit" method="POST">
-        <button type="button"><a href="">Edit</a></button>
+        <input type="hidden" value="<%= item._id %>" name="id">
+        <button type="submit" class="btn btn-primary">Edit</button>
     </form>
+    <form action="/user/edit/delete" method="POST">
+        <input type="hidden" value="<%= item._id %>" name="id">
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+    <!-- <button id="edit">Edit</button> -->
 <% }) %>
 
+<script>
+//     const edit = document.getElementById('edit')
+//     edit.addEventListener('submit', async function editPost(id) {
+//         id.preventDefault()
+//     try{
+//         console.log('clicked')
+//         console.log(id)
+//         const url = 'http://localhost:5000/user/edit'
+//         const options = {
+//                 method:'POST',
+//                 headers: {
+//                     'Content-Type' : 'application/json'
+//                 },
+//                 redirect: `${url}`,
+//                 body : JSON.stringify({
+//                     id
+//                 })
+//             }
+//         const res = await fetch(`${url}`, options)
+//         const d = await res.json()
+//         console.log(d)
+//     }
+//     catch(err) {
+//         console.log(err)
+//     }
+// })
+    
+</script>

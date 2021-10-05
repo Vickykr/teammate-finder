@@ -4,15 +4,9 @@
         <img class="card-img-top" src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.jpg" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title"><%= item.name %></h5>
-          <p class="card-text"><%= item.name %></p>
+          <p class="card-text"><%= item.description %></p>
           <a href="#" class="card-link">Like</a>
           <a href="#" class="card-link">Comment</a>
-          <% if(session.user._id === item.UserId){ %>
-            <form action="/user/edit" method="POST">
-
-              <button type="button"><a href="">Edit</a></button>
-            </form>
-          <% } %>
         </div>
       </div>
     <% }) %>

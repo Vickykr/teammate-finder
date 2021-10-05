@@ -1,0 +1,21 @@
+
+  <form action="/user/edit/save" method="POST">
+    <!-- Name input -->
+    <div class="form-outline mb-4">
+      <input name="name" type="text" id="form4Example1" value="<%= data[0].name %>" class="form-control" />
+      <label class="form-label" for="form4Example1">Project Name</label>
+    </div>
+  
+    <!-- Message input -->
+    <div class="form-outline mb-4">
+      <textarea name="description" class="form-control" id="form4Example3" rows="4"><%= data[0].description %></textarea>
+      <label class="form-label" for="form4Example3">Message</label>
+    </div>
+
+    <input type="hidden" value="<%= data[0]._id %>" name="id">
+  
+
+  
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary btn-block mb-4">Update</button>
+  </form>

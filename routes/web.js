@@ -16,5 +16,7 @@ function initRoutes(app){
     app.get('/user/create',auth,userController().create)
     app.post('/user/create', auth, userController().postCreate)
     app.post('/user/edit',auth,userController().edit)
+    app.post('/user/edit/save',auth,userController().editSave)
+    app.post('/user/edit/delete',auth,userController().deletePost)
 }
 module.exports = initRoutes
