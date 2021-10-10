@@ -45,7 +45,7 @@ app.use(flash())
 //middlewares
 app.use(express.json()) //receiving json data
 app.use(express.urlencoded({extended: false})) //receiving json data
-
+app.use(express.static('public'));
 
 
 //global middleware so that session and user can be used anywhere

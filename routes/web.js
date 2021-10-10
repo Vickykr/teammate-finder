@@ -2,6 +2,7 @@ const auth = require('../app/http/middlewares/auth')
 const authController = require('../app/http/controllers/authController')
 const homeController = require('../app/http/controllers/homeController')
 const userController = require('../app/http/controllers/userController')
+const likeController = require('../app/http/controllers/likeController')
 
 function initRoutes(app){
 
@@ -18,5 +19,8 @@ function initRoutes(app){
     app.post('/user/edit',auth,userController().edit)
     app.post('/user/edit/save',auth,userController().editSave)
     app.post('/user/edit/delete',auth,userController().deletePost)
+
+    app.post('/like',auth, likeController().like)
+    app.post('/unlike',auth, likeController().unlike)
 }
 module.exports = initRoutes

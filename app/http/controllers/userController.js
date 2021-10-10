@@ -1,8 +1,16 @@
+const { compareSync } = require('bcrypt')
 const projects = require('../../models/createProject')
+const users = require('../../models/register')
 function userController() {
     return {
         async dashboard(req,res) {
             const myProjects = await projects.find({userId:req.session.user._id})
+            for(let i=0;i<myProjects.length;i++)
+            {
+                const userInfo = await users.find({_id:myProjects[i].userId}).select(['-password','-role','-createdAt','-updatedAt'])
+                console.log(userInfo)
+                myProjects[i].userInfo = userInfo //userInfo is an array
+            }
             res.render('dashboard',{myProjects})
         },
         create(req,res) {

@@ -3,7 +3,51 @@
 
 <% if(myProjects.length === 0){%> 
 <div>You donot have any post please create</div>
-<% } %>
+<% } else {%>
+    <section>
+        <div class="container mt-5 mb-3">
+              <div class="row">
+                  <% myProjects.forEach(item => { %>
+                  <div class="col-md-4">
+                      <div class="card p-3 mb-2">
+                          <div class="d-flex justify-content-between">
+                              <div class="d-flex flex-row align-items-center">
+                                  <div class="icon"> <i class="bx bxl-mailchimp"></i> </div>
+                                  <div class="ms-2 c-details">
+                                      <h6 class="mb-0"><%= item.userInfo[0].name %></h6> <span>1 days ago</span>
+                                  </div>
+                              </div>
+                              <div class="badge"> <span>Design</span> </div>
+                          </div>
+                          <div class="mt-5">
+                              <h1><%= item.name %></h1>
+                              <h5 class="heading"><%= item.name %></h5>
+                              <div class="mt-5">
+                                  <div class="progress">
+                                      <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                  </div>
+                                  <div class="mt-3"> <span class="text1">32 Applied <span class="text2">of 50 capacity</span></span> </div>
+                                  
+                                  <button href="#" class="card-link like" data-post="<%= JSON.stringify(item) %>" data-user="<%= JSON.stringify(session.user) %>" > <%= item.likes.length %> Like</button>
+                                  <button href="#" class="card-link">Comment</button>
+                                  
+                                <form action="/user/edit" method="POST">
+                                <input type="hidden" value="<%= item._id %>" name="id">
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                                </form>
+                                <form action="/user/edit/delete" method="POST">
+                                    <input type="hidden" value="<%= item._id %>" name="id">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <% }) %>
+              </div>
+      </div>
+      </section>
+      <%}%>
 <% myProjects.forEach(item => { %>
     <div>Project Name :- <%= item.name %></div>
     <div>Project Name :- <%= item.description %></div>

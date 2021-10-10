@@ -1,11 +1,7 @@
 Left over:-
 
-Update post without form
-delete post without form
 add image
-like function
 comment function
-edit in home page.
 
 //extra ideas
 share
