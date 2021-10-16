@@ -8,3 +8,7 @@ share
 pagination search
 OAuth
 Tags
+
+//advanced ideas
+implement ML
+Make app in flutter or native or java

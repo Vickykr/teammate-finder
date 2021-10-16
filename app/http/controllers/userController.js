@@ -17,10 +17,11 @@ function userController() {
             res.render('create')
         },
         async postCreate(req, res) {
-            const {name,description} = req.body
+            const {name,description,progress} = req.body
             const item = new projects({
                 name,
                 description,
+                progress,
                 userId:req.session.user._id
             })
             await item.save()
@@ -32,10 +33,10 @@ function userController() {
         },
         async editSave(req,res) {
             try{
-                const {name,description,id} = req.body
-                const data = await projects.updateOne({_id:id},{$set: {name,description}})
+                const {name,description,progress,id} = req.body
+                const data = await projects.updateOne({_id:id},{$set: {name,description,progress}})
                 const myProjects = await projects.find({userId:req.session.user._id})
-                res.render('dashboard',{myProjects})
+                res.redirect('/user/dashboard')
             }catch(err){
                 console.log(err)
             }
@@ -45,7 +46,7 @@ function userController() {
                 const {id} = req.body
                 const data = await projects.deleteOne({_id:id})
                 const myProjects = await projects.find({userId:req.session.user._id})
-                res.render('dashboard',{myProjects})
+                res.redirect('/user/dashboard')
             }catch(err){
                 console.log(err)
             }

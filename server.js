@@ -64,6 +64,11 @@ app.set('view engine','ejs')
 
 require('./routes/web')(app)
 
+//404 page
+app.use((req,res) => {
+    res.status(404).render('404')
+})
+
 app.listen(PORT,() => {
     console.log(`Listening to port ${PORT}`)
 })

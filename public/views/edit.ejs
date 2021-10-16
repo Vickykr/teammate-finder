@@ -12,6 +12,12 @@
       <label class="form-label" for="form4Example3">Message</label>
     </div>
 
+    <!-- Progress input -->
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form4Example3">Progress in percentage</label>
+    <input type="number" name="progress" class="form-control" id="form4Example3" rows="4" min="0" max="100" value="<%= data[0].progress %>"></input>
+  </div>
+
     <input type="hidden" value="<%= data[0]._id %>" name="id">
   
 
