@@ -9,15 +9,16 @@ const mongoose = require('mongoose')
 const User = require('./app/models/register')
 const flash = require('express-flash')
 const session = require('express-session')
-const MongoDbStore = require('connect-mongo').default 
+const MongoDbStore = require('connect-mongo') 
 
 // connect DB
 const db_url = process.env.DB_URL
 const connection = mongoose.connection
-mongoose.connect(db_url, {
+const clientP = mongoose.connect(db_url, {
     useNewUrlParser:true,
     useUnifiedTopology:true
-}).then(()=>{
+}).then((m)=>{
+    m.connection.getClient()
     console.log('DB connected');
 }).catch((error) => {
     console.log(error);
@@ -25,6 +26,7 @@ mongoose.connect(db_url, {
 
 // Session store creates a collection in the DB
 let mongoStore = MongoDbStore.create({
+    clientPromise: clientP,
     mongoUrl: db_url
     //mongooseConnection: connection, //name of the Db where we will store session
     //collectionName: 'sessions',  //name of the collection where we will store session
