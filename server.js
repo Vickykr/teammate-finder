@@ -10,6 +10,7 @@ const User = require('./app/models/register')
 const flash = require('express-flash')
 const session = require('express-session')
 const MongoDbStore = require('connect-mongo') 
+const cookieParser = require('cookie-parser')
 
 // connect DB
 const db_url = process.env.DB_URL
@@ -34,6 +35,7 @@ let mongoStore = MongoDbStore.create({
 
 //middlewares
 // session config
+app.use(cookieParser());
 app.use(session({
     secret: process.env.COOKIE_SECRET,
     resave: false,
