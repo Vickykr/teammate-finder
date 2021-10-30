@@ -9,7 +9,7 @@ const mongoose = require('mongoose')
 const User = require('./app/models/register')
 const flash = require('express-flash')
 const session = require('express-session')
-const MongoDbStore = require('connect-mongo') 
+const MongoDbStore = require('connect-mongo').default 
 
 // connect DB
 const db_url = process.env.DB_URL
