@@ -25,7 +25,7 @@ mongoose.connect(db_url, {
 
 // Session store creates a collection in the DB
 let mongoStore = MongoDbStore.create({
-    mongoUrl: db_url,
+    mongoUrl: db_url
     //mongooseConnection: connection, //name of the Db where we will store session
     //collectionName: 'sessions',  //name of the collection where we will store session
 })
