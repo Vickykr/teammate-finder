@@ -3,6 +3,9 @@
     "version": "1.0.0",
     "description": "This is a project to find a teammate for making project",
     "main": "index.js",
+    "engines": {
+        "node": "14.15.0"
+    },
     "author": "Vicky Kumar Yadav",
     "scripts": {
         "start": "node server.js",
