@@ -35,7 +35,7 @@ let mongoStore = MongoDbStore.create({
 
 //middlewares
 // session config
-app.use(express.cookieParser(process.env.COOKIE_SECRET));
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(session({
     secret: process.env.COOKIE_SECRET,
     resave: false,
