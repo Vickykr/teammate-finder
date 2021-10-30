@@ -25,7 +25,6 @@ function authController () {
                         {
                             req.session.isAuth = true
                             req.session.user = user
-                            console.log(user)
                             res.redirect('/user/dashboard')
                         }
                         else
@@ -57,7 +56,7 @@ function authController () {
             }
             else 
             {
-                const exists = User.exists({email})
+                const exists = await User.exists({email})
                 if(exists)
                 {
                     req.flash('error','email taken')
@@ -65,19 +64,22 @@ function authController () {
                     req.flash('email',email)
                     res.redirect('/register')
                 }
-        
-                const saltRounds = 10
-                try{
-                    const hashedPass = await bcrypt.hash(password, saltRounds)
-                    const user = new User({
-                        name,
-                        email,
-                        password:hashedPass
-                    })
-                    await user.save()
-                    res.redirect('/login')
-                }catch(err){
-                    console.log(err)
+                else
+                {
+                    const saltRounds = 10
+                    try{
+                        const hashedPass = await bcrypt.hash(password, saltRounds)
+                        const user = new User({
+                            name,
+                            email,
+                            password:hashedPass
+                        })
+                        await user.save()
+                        console.log('saved');
+                        res.redirect('/login')
+                    }catch(err){
+                        console.log(err)
+                    }
                 }
             }
         },

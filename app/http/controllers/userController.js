@@ -8,7 +8,7 @@ function userController() {
             for(let i=0;i<myProjects.length;i++)
             {
                 const userInfo = await users.find({_id:myProjects[i].userId}).select(['-password','-role','-createdAt','-updatedAt'])
-                console.log(userInfo)
+                //console.log(userInfo)
                 myProjects[i].userInfo = userInfo //userInfo is an array
             }
             res.render('dashboard',{myProjects})
