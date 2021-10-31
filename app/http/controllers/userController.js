@@ -7,10 +7,13 @@ function userController() {
             const myProjects = await projects.find({userId:req.session.user._id})
             for(let i=0;i<myProjects.length;i++)
             {
-                const userInfo = await users.find({_id:myProjects[i].userId}).select(['-password','-role','-createdAt','-updatedAt'])
-                //console.log(userInfo)
+                const userInfo = await users.find({_id:myProjects[i].userId}).select(['-password','-role','-updatedAt'])
+                var date = new Date(userInfo[0].createdAt.toString());
+                date = date.getDate() + '-' + (date.getMonth()+1) + '-' + date.getFullYear()
+                userInfo[0].date = date
                 myProjects[i].userInfo = userInfo //userInfo is an array
             }
+            myProjects.reverse()
             res.render('dashboard',{myProjects})
         },
         create(req,res) {

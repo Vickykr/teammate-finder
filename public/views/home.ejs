@@ -1,5 +1,5 @@
 <section>
-    <div><% if(session.user) { %> <%=session.user.email %> <% }%></div>
+    <!-- <div><% if(session.user) { %> <%=session.user.email %> <% }%></div> -->
   <div class="container mt-5 mb-3">
         <div class="row">
             <% data.forEach(item => { %>
@@ -7,9 +7,9 @@
                 <div class="card p-3 mb-2">
                     <div class="d-flex justify-content-between">
                         <div class="d-flex flex-row align-items-center">
-                            <div class="icon"> <i class="bx bxl-mailchimp"></i> </div>
+                            <!-- <div class="icon"> <i class="bx bxl-mailchimp"></i> </div> -->
                             <div class="ms-2 c-details">
-                                <h6 class="mb-0"><%= item.userInfo[0].name %></h6> <span>1 days ago</span>
+                                <h6 class="mb-0"><%= item.userInfo[0].name %></h6> <span><%= item.userInfo[0].date %></span>
                             </div>
                         </div>
                         <div class="badge"> <span>Design</span> </div>
@@ -23,12 +23,13 @@
                             </div>
                             <div class="mt-3"> <span class="text1"><%= item.progress %>% is completed</span> </div>
                             <button href="#" class="card-link like" data-post="<%= JSON.stringify(item) %>" data-user="<%= JSON.stringify(session.user) %>" > <%= item.likes.length %> Like</button>
-                            <button href="#" class="card-link">Comment</button>
+                            <!-- <button href="#" class="card-link">Comment</button> -->
                             <% if(session.user && session.user.email === item.userInfo[0].email) {%>
                                 <form action="/user/edit" method="POST">
                                     <input type="hidden" value="<%= item._id %>" name="id">
                                     <button type="submit" class="card-link">Edit</button>
-                                    </form>
+                                </form>
+                                
                             <% } %>
                         </div>
                     </div>
